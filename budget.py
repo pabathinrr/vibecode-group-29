@@ -1,31 +1,33 @@
-while True:
-    # Ask for student's name
-    name = input("\nEnter student name (or type 'Exit' to stop): ")
+def calculate_remaining_balance():
+    try:
+        # Ask for the total monthly budget
+        total_budget = float(input("Enter your total monthly budget: "))
 
-    # Check if the user wants to exit
-    if name.strip().lower() == 'exit':
-        print("Exiting the program...")
-        break
+        # Ask for 3 expenses
+        expense1 = float(input("Enter the amount for Expense 1: "))
+        expense2 = float(input("Enter the amount for Expense 2: "))
+        expense3 = float(input("Enter the amount for Expense 3: "))
 
-    # Ask for 3 subject marks
-    mark1 = float(input("Enter mark for subject 1: "))
-    mark2 = float(input("Enter mark for subject 2: "))
-    mark3 = float(input("Enter mark for subject 3: "))
+        # Calculate the total expenses and remaining balance
+        total_expenses = expense1 + expense2 + expense3
+        remaining_balance = total_budget - total_expenses
 
-    # Calculate average
-    average = (mark1 + mark2 + mark3) / 3
+        # Display the results
+        print("\n--- Budget Summary ---")
+        print(f"Total Budget:      ${total_budget:.2f}")
+        print(f"Total Expenses:    ${total_expenses:.2f}")
+        print("----------------------")
+        
+        # Display the remaining balance, alerting the user if they overspent
+        if remaining_balance >= 0:
+            print(f"Remaining Balance: ${remaining_balance:.2f}")
+        else:
+            print(f"Remaining Balance: -${abs(remaining_balance):.2f} (Over budget!)")
 
-    print("\n--- Result ---")
-    print("Student Name:", name)
-    print(f"Average: {average:.2f}")
+    except ValueError:
+        # Handle the error if the user inputs text instead of numbers
+        print("\nError: Please enter valid numerical values for your budget and expenses.")
 
-    # Assign grade
-    if average >= 75:
-        print("Grade: A")
-    elif average >= 60:
-        print("Grade: B")
-    elif average >= 40:
-        print("Grade: C")
-    else:
-        print("Grade: Fail")
-    print("-" * 14)
+# Run the function
+if __name__ == "__main__":
+    calculate_remaining_balance()
