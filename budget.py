@@ -14,23 +14,20 @@ def calculate_remaining_balance():
 
         # Display the results
         print("\n--- Budget Summary ---")
-        print(f"Total Budget:      {total_budget:.2f} LKR")
-        print(f"Total Expenses:    {total_expenses:.2f} LKR")
+        print(f"Total Budget:      ${total_budget:.2f}")
+        print(f"Total Expenses:    ${total_expenses:.2f}")
         print("----------------------")
         
-        # Display the remaining balance with the new warning logic
-        if remaining_balance < 0:
-            print(f"Remaining Balance: -{abs(remaining_balance):.2f} LKR (Over budget!)")
-        elif remaining_balance < 500:
-            print(f"Remaining Balance: {remaining_balance:.2f} LKR")
-            print("Warning: Low Funds")
+        # Display the remaining balance, alerting the user if they overspent
+        if remaining_balance >= 0:
+            print(f"Remaining Balance: ${remaining_balance:.2f}")
         else:
-            print(f"Remaining Balance: {remaining_balance:.2f} LKR")
+            print(f"Remaining Balance: -${abs(remaining_balance):.2f} (Over budget!)")
 
     except ValueError:
         # Handle the error if the user inputs text instead of numbers
         print("\nError: Please enter valid numerical values for your budget and expenses.")
 
 # Run the function
-if __name__ == "__main__":    
+if __name__ == "__main__":
     calculate_remaining_balance()
